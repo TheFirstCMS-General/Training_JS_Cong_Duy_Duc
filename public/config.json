@@ -1,0 +1,14 @@
+[
+  {
+    "totalAmount": "20000000",
+    "installments": "2",
+    "amountPerInstallment": "10000000",
+    "dueDate": "2024-08-21"
+  },
+  {
+    "totalAmount": "10000000",
+    "installments": "2",
+    "amountPerInstallment": "5000000",
+    "dueDate": "2024-08-21"
+  }
+]

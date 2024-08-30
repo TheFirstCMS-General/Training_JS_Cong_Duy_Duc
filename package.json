@@ -1,0 +1,23 @@
+{
+  "name": "training_js_cong_duy_duc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheFirstCMS-General/Training_JS_Cong_Duy_Duc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheFirstCMS-General/Training_JS_Cong_Duy_Duc/issues"
+  },
+  "homepage": "https://github.com/TheFirstCMS-General/Training_JS_Cong_Duy_Duc#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

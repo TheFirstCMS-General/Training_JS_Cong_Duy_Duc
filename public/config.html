@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cấu hình số tiền</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary">Cấu hình số tiền</h2>
+            <!-- Nút Thoát về Trang 1 -->
+            <button onclick="window.location.href='index.html'" class="btn btn-secondary btn-lg">
+                Thoát về trang Quản lý học sinh
+            </button>
+        </div>
+
+        <!-- Form cấu hình số tiền -->
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title text-secondary mb-4">Cấu hình số tiền phải đóng</h4>
+                <form id="feeConfigForm">
+                    <div class="mb-3">
+                        <label for="totalAmount" class="form-label">Tổng số tiền:</label>
+                        <input type="number" class="form-control" id="totalAmount" placeholder="Nhập tổng số tiền phải đóng">
+                    </div>
+                    <div class="mb-3">
+                        <label for="installments" class="form-label">Số đợt đóng:</label>
+                        <input type="number" class="form-control" id="installments" placeholder="Nhập số đợt đóng">
+                    </div>
+                    <div class="mb-3">
+                        <label for="amountPerInstallment" class="form-label">Số tiền đóng mỗi đợt:</label>
+                        <input type="number" class="form-control" id="amountPerInstallment" placeholder="Nhập số tiền mỗi đợt">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dueDate" class="form-label">Hạn nộp:</label>
+                        <input type="date" class="form-control" id="dueDate">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu cấu hình</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Danh sách cấu hình -->
+        <div class="card mt-4 shadow-sm">
+            <div class="card-body">
+                <h4 class="card-title text-secondary mb-4">Danh sách cấu hình</h4>
+                <table class="table table-hover table-bordered" id="config-table">
+                    <thead class="table-info">
+                        <tr>
+                            <th>Tổng số tiền</th>
+                            <th>Số đợt đóng</th>
+                            <th>Số tiền đóng mỗi đợt</th>
+                            <th>Hạn nộp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Config data will go here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="config.js"></script>
+
+</body>
+
+</html>
+
