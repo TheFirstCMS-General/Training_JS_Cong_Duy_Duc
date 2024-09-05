@@ -36,20 +36,19 @@ function renderTable() {
         }
     
         row.innerHTML = `
-            <td>${student.name}</td>
-            <td>${student.gender}</td>
-            <td>${student.amountPaid}</td>
-            <td>${student.completionStatus}</td>
-            <tr>${daysLeft < 0 ? 'Quá hạn' : student.completionStatus}</tr>
-            <td>${student.amountDate}</td>
-            <td>${student.birthDate}</td>
-            <td>${student.address}</td>
-           
-            <td>
-                <button class="btn btn-warning btn-edit" data-index="${index}" data-bs-toggle="modal" data-bs-target="#editStudentModal">Sửa</button>
-                <button class="btn btn-danger btn-delete" data-index="${index}">Xóa</button>
-            </td>
-        `;
+        <td>${student.name}</td>
+        <td>${student.gender}</td>
+        <td>${student.amountPaid}</td>
+        <tr>${daysLeft < 0 ? 'Quá hạn' : student.completionStatus}</tr>
+        <td>${student.amountDate}</td>
+        <td>${student.birthDate}</td>
+        <td>${student.address}</td>
+       
+        <td>
+            <button class="btn btn-warning btn-edit" data-index="${index}" data-bs-toggle="modal" data-bs-target="#editStudentModal">Sửa</button>
+            <button class="btn btn-danger btn-delete" data-index="${index}">Xóa</button>
+        </td>
+    `;
     });
     
     // Xử lý các nút sửa và xóa
