@@ -39,8 +39,6 @@ function renderTable() {
                 row.classList.add('highlight-red'); // Quá hạn
             } else if (daysLeft <= 3) {
                 row.classList.add('highlight-yellow'); // Còn 3 ngày hoặc ít hơn (0 đến 3 ngày)
-            } else if (daysLeft <= 7) {
-                row.classList.add('highlight-red'); // Còn 7 ngày hoặc ít hơn (4 đến 7 ngày)
             }
             console.log('Days left:', daysLeft); // Kiểm tra số ngày còn lại
         }
