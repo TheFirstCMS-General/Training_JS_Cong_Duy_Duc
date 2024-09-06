@@ -2,56 +2,64 @@
 let students = JSON.parse(localStorage.getItem('students')) || [];
 const studentTable = document.getElementById('student-table').getElementsByTagName('tbody')[0];
 
+function getLatestDueDate() {
+    let configs = JSON.parse(localStorage.getItem('configs')) || [];
+    if (configs.length > 0) {
+        const latestConfig = configs[configs.length - 1]; // Lấy cấu hình mới nhất
+        return new Date(latestConfig.dueDate);
+    }
+    return null;
+}
+
+// Hàm hiển thị bảng danh sách học sinh
 // Hàm hiển thị bảng danh sách học sinh
 function renderTable() {
+    const dueDate = getLatestDueDate(); // Lấy hạn đóng từ cấu hình
+    console.log('Hạn đóng:', dueDate); // Kiểm tra hạn đóng có được lấy đúng không
+
+    studentTable.innerHTML = '';
+
     // Sắp xếp học sinh
     students.sort((a, b) => {
-        // Di chuyển học sinh chưa hoàn thành thanh toán lên đầu
         if (a.completionStatus === "Chưa hoàn thành" && b.completionStatus === "Hoàn thành") return -1;
         if (a.completionStatus === "Hoàn thành" && b.completionStatus === "Chưa hoàn thành") return 1;
-
-        // Sắp xếp theo ngày thanh toán
         return new Date(a.amountDate) - new Date(b.amountDate);
     });
 
-    studentTable.innerHTML = '';
     students.forEach((student, index) => {
         const row = studentTable.insertRow();
-        const paymentDate = new Date(student.amountDate);
-        const today = new Date();
-        const daysLeft = Math.ceil((paymentDate - today) / (1000 * 60 * 60 * 24));
-        
-        if (student.completionStatus === "Chưa hoàn thành") {
-            console.log(daysLeft);
-            if (daysLeft > 0) {
+        const amountDate = new Date(student.amountDate); // Lấy ngày thanh toán của học sinh
+
+        // Chỉ tính toán nếu hạn đóng tồn tại và học sinh chưa hoàn thành
+        if (dueDate && student.completionStatus === "Chưa hoàn thành") {
+            const daysLeft = Math.ceil((dueDate - amountDate) / (1000 * 60 * 60 * 24)); // Tính số ngày còn lại giữa hạn đóng và ngày thanh toán
+
+            // Kiểm tra điều kiện để gán màu
+            if (daysLeft < 0) {
                 row.classList.add('highlight-red'); // Quá hạn
             } else if (daysLeft <= 3) {
-                row.classList.add('highlight-red'); // Còn 7 ngày hoặc ít hơn
-            
-            
-
- // Còn 7 ngày hoặc ít hơn
-                console.log(row);
-            } 
+                row.classList.add('highlight-yellow'); // Còn 3 ngày hoặc ít hơn (0 đến 3 ngày)
+            } else if (daysLeft <= 7) {
+                row.classList.add('highlight-red'); // Còn 7 ngày hoặc ít hơn (4 đến 7 ngày)
+            }
+            console.log('Days left:', daysLeft); // Kiểm tra số ngày còn lại
         }
-    
+
         row.innerHTML = `
-        <td>${student.name}</td>
-        <td>${student.gender}</td>
-        <td>${student.amountPaid}</td>
-        <tr>${daysLeft < 0 ? 'Quá hạn' : student.completionStatus}</tr>
-        <td>${student.amountDate}</td>
-        <td>${student.birthDate}</td>
-        <td>${student.address}</td>
-       
-        <td>
-            <button class="btn btn-warning btn-edit" data-index="${index}" data-bs-toggle="modal" data-bs-target="#editStudentModal">Sửa</button>
-            <button class="btn btn-danger btn-delete" data-index="${index}">Xóa</button>
-        </td>
-    `;
+            <td>${student.name}</td>
+            <td>${student.gender}</td>
+            <td>${student.amountPaid}</td>
+            <td>${student.completionStatus}</td>
+            <td>${student.amountDate}</td>
+            <td>${student.birthDate}</td>
+            <td>${student.address}</td>
+            <td>
+                <button class="btn btn-warning btn-edit" data-index="${index}" data-bs-toggle="modal" data-bs-target="#editStudentModal">Sửa</button>
+                <button class="btn btn-danger btn-delete" data-index="${index}">Xóa</button>
+            </td>
+        `;
     });
-    
-    // Xử lý các nút sửa và xóa
+    // Xử lý các nút sửa và xóa như trước
     document.querySelectorAll('.btn-edit').forEach(button => {
         button.addEventListener('click', (e) => {
             const index = e.target.getAttribute('data-index');
@@ -79,6 +87,7 @@ function renderTable() {
         });
     });
 }
+
 
 // Lưu danh sách học sinh vào localStorage
 function saveStudents() {

@@ -19,7 +19,12 @@
 .highlight-orange {
     background-color: orange !important;
 }
-
+.highlight-yellow {
+    background-color: yellow !important;
+} 
+.table {
+    --bs-table-bg: none;
+}
 .highlight-red {
     background-color: red !important;
 }
